@@ -1,13 +1,5 @@
-目录结构
-=================
 
-   * [Forwarded Fields Annotation（转发字段注解）](#forwarded-fields-annotation转发字段注解)
-      * [函数类注释](#函数类注释)
-      * [运算符参数](#运算符参数)
-   * [Non-Forwarded Fields（非转发字段注解）](#non-forwarded-fields非转发字段注解)
-   * [Read Fields(读取字段注解)](#read-fields读取字段注解)
-
->该专栏内容与 [flink-notes](https://github.com/GourdErwa/flink-advanced/tree/master/flink-notes) 同步，源码与 [flink-advanced](https://github.com/GourdErwa/flink-advanced) 同步。
+>该专栏内容与 [flink-basis](https://github.com/GourdErwa/review-notes/tree/master/docs/framework/flink-basis) 同步，源码与 [flink-advanced](https://github.com/GourdErwa/flink-advanced) 同步。
 本节内容对应[官方文档](https://ci.apache.org/projects/flink/flink-docs-release-1.9/zh/dev/batch/#semantic-annotations)，本节内容对应[示例源码](https://github.com/GourdErwa/flink-advanced/blob/master/src/main/scala/io/gourd/flink/scala/games/batch/SemanticAnnotations.scala)  
 
 语义注解可用于为Flink提供有关函数行为的提示。它们告诉系统函数读取和评估函数输入的哪些字段，以及未修改的函数将哪些字段从其输入转发到输出。  

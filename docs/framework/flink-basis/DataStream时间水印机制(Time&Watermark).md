@@ -1,22 +1,5 @@
-目录
-=================
-   * [1 Time（时间）](#1-time时间)
-      * [如何设置时间域](#如何设置时间域)
-   * [2 Watermark（水印）](#2-watermark水印)
-      * [2.1 有序流中 Watermarks](#21-有序流中-watermarks)
-      * [2.2 乱序流中 Watermarks](#22-乱序流中-watermarks)
-      * [2.3 并行流中的 Watermarks](#23-并行流中的-watermarks)
-   * [3 指定 Timestamp 与生成 Watermarks](#3-指定-timestamp-与生成-watermarks)
-      * [3.1 SourceFunction 直接定义 Timestamp 与 Watermarks](#31-sourcefunction-直接定义-timestamp-与-watermarks)
-      * [3.2 通过Flink提供的 Timestamp Assigner 指定 Timestamp 与 Watermarks](#32-通过flink提供的-timestamp-assigner-指定-timestamp-与-watermarks)
-         * [3.2.1 AssignerWithPeriodicWatermarks（周期性水印生成器）](#321-assignerwithperiodicwatermarks周期性水印生成器)
-            * [3.2.1.1 Flink-API提供：时间戳单调递增的分配器](#3211-flink-api提供时间戳单调递增的分配器)
-            * [3.2.1.2 Flink-API提供：允许固定延迟的分配器](#3212-flink-api提供允许固定延迟的分配器)
-            * [3.2.1.3 自定义实现 AssignerWithPeriodicWatermarks 示例](#3213-自定义实现-assignerwithperiodicwatermarks-示例)
-         * [3.2.2 AssignerWithPunctuatedWatermarks（条件水印生成器）](#322-assignerwithpunctuatedwatermarks条件水印生成器)
-   * [4.为每个Kafka分区分配时间戳/水印](#4为每个kafka分区分配时间戳水印)
    
->该专栏内容与 [flink-notes](https://github.com/GourdErwa/flink-advanced/tree/master/flink-notes) 同步，源码与 [flink-advanced](https://github.com/GourdErwa/flink-advanced) 同步。
+>该专栏内容与 [flink-basis](https://github.com/GourdErwa/review-notes/tree/master/docs/framework/flink-basis) 同步，源码与 [flink-advanced](https://github.com/GourdErwa/flink-advanced) 同步。
 本节内容对应[官方文档](https://ci.apache.org/projects/flink/flink-docs-release-1.9/dev/event_time.html)，本节内容对应[示例源码](https://github.com/GourdErwa/flink-advanced/blob/master/src/main/scala/io/gourd/flink/scala/games/streaming/Watermark.scala)  
    
 # 1 Time（时间）
@@ -70,12 +53,12 @@ Watermarks(水印)处理机制如下：
 ## 2.1 有序流中 Watermarks
 某些情况下，基于Event Time的数据流是有续的(相对event time)。  
 在有序流中，watermark就是一个简单的周期性标记。
-![stream_watermark_in_order](https://raw.githubusercontent.com/GourdErwa/flink-advanced/master/flink-notes/images/stream_watermark_in_order.png)
+![stream_watermark_in_order](https://raw.githubusercontent.com/GourdErwa/review-notes/master/docs/framework/flink-basis/_images/stream_watermark_in_order.png)
 ## 2.2 乱序流中 Watermarks
 在更多场景下，基于Event Time的数据流是无续的(相对event time)。
 
 在无序流中，Watermarks 至关重要，他告诉 operator 比 Watermarks 更早(更老/时间戳更小)的事件已经到达，operator 可以将内部事件时间提前到Watermarks的时间戳(可以触发window计算)
-![stream_watermark_out_of_order](https://raw.githubusercontent.com/GourdErwa/flink-advanced/master/flink-notes/images/stream_watermark_out_of_order.png)
+![stream_watermark_out_of_order](https://raw.githubusercontent.com/GourdErwa/review-notes/master/docs/framework/flink-basis/_images/stream_watermark_out_of_order.png)
 ## 2.3 并行流中的 Watermarks
 通常情况下， watermark 在源函数中或源函数后生成。如果指定多次 watermark，后面指定的 watermark 会覆盖前面的值。 源函数的每个 sub-task 独立生成水印。
 
@@ -97,7 +80,7 @@ Flink 的水印处理以及传播算法,确保了operator task恰当地释放一
 
 若是两个输入流的水印差异太大，也会造成类似的影响。在有两个输入流的task中，它的事件-时钟会对应于较慢的流，并且较快的流的records或是中间结果一般会缓存到state中，直到event-time 时钟允许处理它们。
 
-![parallel_streams_watermarks](https://raw.githubusercontent.com/GourdErwa/flink-advanced/master/flink-notes/images/parallel_streams_watermarks.png)
+![parallel_streams_watermarks](https://raw.githubusercontent.com/GourdErwa/review-notes/master/docs/framework/flink-basis/_images/parallel_streams_watermarks.png)
 
 # 3 指定 Timestamp 与生成 Watermarks
 ## 3.1 SourceFunction 直接定义 Timestamp 与 Watermarks
@@ -132,7 +115,7 @@ Flink 提供了两个接口用于指定 Timestamp 与 Watermarks
 - `AssignerWithPunctuatedWatermarks` 根据接入的事件触发条件生成 Watermarks
 
 生成类图关系如下：
-![timestampAssigner_uml](https://raw.githubusercontent.com/GourdErwa/flink-advanced/master/flink-notes/images/timestampAssigner_uml.png)
+![timestampAssigner_uml](https://raw.githubusercontent.com/GourdErwa/review-notes/master/docs/framework/flink-basis/_images/timestampAssigner_uml.png)
 
 `DataStream`支持指定`Timestamp 与 Watermarks` API
 ```java
@@ -251,4 +234,4 @@ kafkaSource.assignTimestampsAndWatermarks(new AscendingTimestampExtractor[MyType
 
 val stream: DataStream[MyType] = env.addSource(kafkaSource)
 ```
-![parallel_kafka_watermarks](https://raw.githubusercontent.com/GourdErwa/flink-advanced/master/flink-notes/images/parallel_kafka_watermarks.png)
+![parallel_kafka_watermarks](https://raw.githubusercontent.com/GourdErwa/review-notes/master/docs/framework/flink-basis/_images/parallel_kafka_watermarks.png)

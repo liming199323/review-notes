@@ -1,4 +1,6 @@
 
+>该专栏内容与 [flink-basis](https://github.com/GourdErwa/review-notes/tree/master/docs/framework/flink-basis) 同步，源码与 [flink-advanced](https://github.com/GourdErwa/flink-advanced) 同步。
+
 flink、flink 入门、flink learning
 
 该系列使用scala语言开发，scala入门参考 [scala-advanced学习笔记](https://github.com/GourdErwa/scala-advanced)
@@ -9,10 +11,6 @@ flink、flink 入门、flink learning
 - Scala 2.12
 - Gradle 5.6.2
 - Intellij Idea 2019.2.4
-
-# 专栏&源码同步更新
->该专栏内容与 [flink-notes](https://github.com/GourdErwa/flink-advanced/tree/master/flink-notes) 同步，源码与 [flink-advanced](https://github.com/GourdErwa/flink-advanced) 同步。
-
 
 # 主要参考
 - [flink 官方](https://flink.apache.org/)

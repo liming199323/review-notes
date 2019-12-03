@@ -1,19 +1,5 @@
-目录结构
-=================
-
-   * [数据集和数据流](#数据集和数据流)
-   * [懒惰执行](#懒惰执行)
-   * [指定键](#指定键)
-      * [定义元组的键](#定义元组的键)
-      * [使用字段表达式定义键](#使用字段表达式定义键)
-      * [使用按键选择器功能定义按键](#使用按键选择器功能定义按键)
-   * [转换函数](#转换函数)
-      * [Lambda Functions](#lambda-functions)
-      * [Rich functions](#rich-functions)
-   * [支持的数据类型](#支持的数据类型)
-   * [累加器和计数器](#累加器和计数器)
    
->该专栏内容与 [flink-notes](https://github.com/GourdErwa/flink-advanced/tree/master/flink-notes) 同步，源码与 [flink-advanced](https://github.com/GourdErwa/flink-advanced) 同步。
+>该专栏内容与 [flink-basis](https://github.com/GourdErwa/review-notes/tree/master/docs/framework/flink-basis) 同步，源码与 [flink-advanced](https://github.com/GourdErwa/flink-advanced) 同步。
 本节内容对应[官方文档](https://ci.apache.org/projects/flink/flink-docs-release-1.9/dev/api_concepts.html)  
 
 # 数据集和数据流

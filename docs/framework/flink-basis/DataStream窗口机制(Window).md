@@ -1,23 +1,5 @@
-目录
-=================
-
-   * [1 Windows（窗口）](#1-windows窗口)
-      * [1.1 Keyed Windows（按key分隔的窗口）](#11-keyed-windows按key分隔的窗口)
-      * [1.2 Non-Keyed Windows（未按key分隔的窗口）](#12-non-keyed-windows未按key分隔的窗口)
-   * [2 窗口生命周期](#2-窗口生命周期)
-   * [3 窗口类型](#3-窗口类型)
-      * [3.1 滚动窗户(Tumbling Windows)](#31-滚动窗户tumbling-windows)
-      * [3.2 滑动窗(Sliding Windows)](#32-滑动窗sliding-windows)
-      * [3.3 会话窗口(Session Windows)](#33-会话窗口session-windows)
-      * [3.4 全局窗口(Global Windows)](#34-全局窗口global-windows)
-   * [4 触发器(Trigger)](#4-触发器trigger)
-      * [4.1 触发器结果](#41-触发器结果)
-      * [4.2 WindowAssigners的默认触发器](#42-windowassigners的默认触发器)
-      * [4.3 Flink内置和自定义触发器](#43-flink内置和自定义触发器)
-   * [5 驱逐器(Evictor)](#5-驱逐器evictor)
-   * [6 允许延迟(Allowed Lateness)](#6-允许延迟allowed-lateness)
    
->该专栏内容与 [flink-notes](https://github.com/GourdErwa/flink-advanced/tree/master/flink-notes) 同步，源码与 [flink-advanced](https://github.com/GourdErwa/flink-advanced) 同步。
+>该专栏内容与 [flink-basis](https://github.com/GourdErwa/review-notes/tree/master/docs/framework/flink-basis) 同步，源码与 [flink-advanced](https://github.com/GourdErwa/flink-advanced) 同步。
 本节内容对应[官方文档](https://ci.apache.org/projects/flink/flink-docs-release-1.9/dev/stream/operators/windows.html)，本节内容对应[示例源码](https://github.com/GourdErwa/flink-advanced/blob/master/src/main/scala/io/gourd/flink/scala/games/streaming/operators/windows/)  
    
 # 1 Windows（窗口）
@@ -119,7 +101,7 @@ Flink 提供以下类型窗口：
     - TimeWindow   可存放[start,end）时间窗口桶
 `WindowAssigner` 类图关系如下：
 
-![WindowAssigner_uml](https://raw.githubusercontent.com/GourdErwa/flink-advanced/master/flink-notes/images/WindowAssigner_uml.png)
+![WindowAssigner_uml](https://raw.githubusercontent.com/GourdErwa/review-notes/master/docs/framework/flink-basis/_images/WindowAssigner_uml.png)
 
 ## 3.1 滚动窗户(Tumbling Windows)
 **定义**：滚动窗口具有固定的大小，并且不重叠。
@@ -134,7 +116,7 @@ Flink 提供以下类型窗口：
     如果要更改，可以提供一个偏移量 offset = 15 minutes
     例如，1:15:00.000 - 2:14:59.999，2:15:00.000 - 3:14:59.999 等.
     一个重要的用例的偏移是窗口调整到比 UTC-0 时区等，例如，在中国，您必须指定的偏移量 Time.hours(-8)
-![tumbling-windows](https://raw.githubusercontent.com/GourdErwa/flink-advanced/master/flink-notes/images/tumbling-windows.png)
+![tumbling-windows](https://raw.githubusercontent.com/GourdErwa/review-notes/master/docs/framework/flink-basis/_images/tumbling-windows.png)
 [示例代码-TumblingWindow](https://github.com/GourdErwa/flink-advanced/blob/master/src/main/scala/io/gourd/flink/scala/games/streaming/operators/windows/TumblingWindow.scala) ：           
 ```java
   val rolePayDataStream: DataStream[RolePay] = GameData.DataStream.rolePay(this)
@@ -174,7 +156,7 @@ Flink 提供以下类型窗口：
     如果要更改，可以提供一个偏移量 offset = 15 minutes
     例如，1:15:00.000 - 2:14:59.999，2:15:00.000 - 3:14:59.999 等.
     一个重要的用例的偏移是窗口调整到比 UTC-0 时区等，例如，在中国，您必须指定的偏移量 Time.hours(-8)
-![sliding-windows](https://raw.githubusercontent.com/GourdErwa/flink-advanced/master/flink-notes/images/sliding-windows.png)
+![sliding-windows](https://raw.githubusercontent.com/GourdErwa/review-notes/master/docs/framework/flink-basis/_images/sliding-windows.png)
 [示例代码-SlidingWindow](https://github.com/GourdErwa/flink-advanced/blob/master/src/main/scala/io/gourd/flink/scala/games/streaming/operators/windows/SlidingWindow.scala) ：        
 ```java
   val rolePayDataStream: DataStream[RolePay] = GameData.DataStream.rolePay(this)
@@ -213,7 +195,7 @@ Flink 提供以下类型窗口：
     为了可合并的，会话窗口操作者需要一个合并触发器以及合并的窗函数，如 `ReduceFunction，AggregateFunction，Process`window function``
     (FoldFunction不能合并）  
     
-![session-windows](https://raw.githubusercontent.com/GourdErwa/flink-advanced/master/flink-notes/images/session-windows.png)
+![session-windows](https://raw.githubusercontent.com/GourdErwa/review-notes/master/docs/framework/flink-basis/_images/session-windows.png)
 [示例代码-SessionWindow](https://github.com/GourdErwa/flink-advanced/blob/master/src/main/scala/io/gourd/flink/scala/games/streaming/operators/windows/SessionWindow.scala) ：    
 ```java
   val rolePayDataStream: DataStream[RolePay] = GameData.DataStream.rolePay(this)
@@ -240,7 +222,7 @@ Flink 提供以下类型窗口：
 ## 3.4 全局窗口(Global Windows)
 **定义**：全局窗口分配器将所有具有相同key的元素分配到同一个全局窗口中，这个窗口模式仅适用于用户还需自定义触发器的情况。  
 否则，由于全局窗口没有一个自然的结尾，无法执行元素的聚合，将不会有计算被执行。
-![non-windowed](https://raw.githubusercontent.com/GourdErwa/flink-advanced/master/flink-notes/images/non-windowed.png)
+![non-windowed](https://raw.githubusercontent.com/GourdErwa/review-notes/master/docs/framework/flink-basis/_images/non-windowed.png)
 [示例代码-GlobalWindow](https://github.com/GourdErwa/flink-advanced/blob/master/src/main/scala/io/gourd/flink/scala/games/streaming/operators/windows/GlobalWindow.scala) ：  
 ```java
   val rolePayDataStream: DataStream[RolePay] = GameData.DataStream.rolePay(this)
@@ -306,7 +288,7 @@ Flink 提供以下类型窗口：
 
 ## 4.3 Flink内置和自定义触发器
 [Trigger](https://github.com/apache/flink/blob/master//flink-streaming-java/src/main/java/org/apache/flink/streaming/api/windowing/triggers/Trigger.java)内置实现类图
-![Trigger_uml](https://raw.githubusercontent.com/GourdErwa/flink-advanced/master/flink-notes/images/Trigger_uml.png)
+![Trigger_uml](https://raw.githubusercontent.com/GourdErwa/review-notes/master/docs/framework/flink-basis/_images/Trigger_uml.png)
 &emsp;   
 Flink带有一些内置触发器如下：
 - `ContinuousEventTimeTrigger` 基于 EventTime&Watermark,根据给定的时间间隔连续触发

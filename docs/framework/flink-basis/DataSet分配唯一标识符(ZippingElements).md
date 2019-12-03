@@ -1,5 +1,5 @@
 
->该专栏内容与 [flink-notes](https://github.com/GourdErwa/flink-advanced/tree/master/flink-notes) 同步，源码与 [flink-advanced](https://github.com/GourdErwa/flink-advanced) 同步。
+>该专栏内容与 [flink-basis](https://github.com/GourdErwa/review-notes/tree/master/docs/framework/flink-basis) 同步，源码与 [flink-advanced](https://github.com/GourdErwa/flink-advanced) 同步。
 
 
 在某些算法中，可能需要为数据集元素分配唯一标识符。[[org.apache.flink.api.scala.utils.DataSetUtils]] scala包装类  
@@ -16,7 +16,7 @@ zipWithUniqueId 以管道方式工作，加快了标签分配过程。
 此方法接收一个数据集作为输入，并返回一个新的 DataSet[(Long, T)] 2元组数据集
 
 代码示例 [ZippingElements](https://github.com/GourdErwa/flink-advanced/blob/master/src/main/scala/io/gourd/flink/scala/games/batch/ZippingElements.scala) ：  
-```java
+```scala
 import io.gourd.flink.scala.api.BatchExecutionEnvironmentApp
 
 /** 在某些算法中，可能需要为数据集元素分配唯一标识符。

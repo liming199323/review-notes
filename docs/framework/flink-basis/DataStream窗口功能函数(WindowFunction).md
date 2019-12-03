@@ -1,15 +1,5 @@
-目录
-=================
-
-   * [1 窗口函数概念](#1-窗口函数概念)
-      * [1.1 WindowFunction与ProcessWindowFunction区别](#11-windowfunction与processwindowfunction区别)
-      * [1.2 ProcessWindowFunction](#12-processwindowfunction)
-      * [1.3 WindowFunction](#13-windowfunction)
-      * [1.4 reduce](#14-reduce)
-      * [1.5 aggregate](#15-aggregate)
-   * [2 具有增量聚合的窗口函数](#2-具有增量聚合的窗口函数)
    
->该专栏内容与 [flink-notes](https://github.com/GourdErwa/flink-advanced/tree/master/flink-notes) 同步，源码与 [flink-advanced](https://github.com/GourdErwa/flink-advanced) 同步。
+>该专栏内容与 [flink-basis](https://github.com/GourdErwa/review-notes/tree/master/docs/framework/flink-basis) 同步，源码与 [flink-advanced](https://github.com/GourdErwa/flink-advanced) 同步。
 本节内容对应[官方文档](https://ci.apache.org/projects/flink/flink-docs-release-1.9/dev/stream/operators/windows.html#window-functions)，本节内容对应[示例源码](https://github.com/GourdErwa/flink-advanced/blob/master/src/main/scala/io/gourd/flink/scala/games/streaming/operators/windows/functions)  
    
 # 1 窗口函数概念
@@ -17,7 +7,7 @@
 >窗口机制（请参考：5.3-Flink DataStream窗口机制(Window)）
 
 分析`WindowedStream`源码提供方法：
-![WindowedStream_methods](https://raw.githubusercontent.com/GourdErwa/flink-advanced/master/flink-notes/images/WindowedStream_methods.png)
+![WindowedStream_methods](https://raw.githubusercontent.com/GourdErwa/review-notes/master/docs/framework/flink-basis/_images/WindowedStream_methods.png)
 
 支持的窗口函数主要为：
 - WindowFunction
@@ -29,7 +19,7 @@
 >废弃说明：fold、apply已废弃推荐使用 aggregate 函数，废弃的函数不进行文档说明
 ## 1.1 WindowFunction与ProcessWindowFunction区别
 分析提供方法，对于各类型函数提供了 WindowFunction与ProcessWindowFunction 方法，使用reduce相关函数分析关联关系如下：
-![WindowFunction_comparison](https://raw.githubusercontent.com/GourdErwa/flink-advanced/master/flink-notes/images/WindowFunction_comparison.png)
+![WindowFunction_comparison](https://raw.githubusercontent.com/GourdErwa/review-notes/master/docs/framework/flink-basis/_images/WindowFunction_comparison.png)
 
 **WindowFunction 处理方法:**
 `void apply(KEY key, W window, Iterable<IN> input, Collector<OUT> out)`
