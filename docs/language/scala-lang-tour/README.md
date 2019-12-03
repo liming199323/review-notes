@@ -1,4 +1,4 @@
-本教程使用 Scala 2.13 , [源码地址](https://github.com/GourdErwa/scala-advanced/tree/master/scala-base) 
+本教程使用 Scala 2.13 , [源码地址](https://github.com/GourdErwa/scala-advanced/tree/master/scala-base) ,[官方文档](https://docs.scala-lang.org/zh-cn/tour/tour-of-scala.html)
 
 # 欢迎来到 Scala 入门-语言特征
 本教程包含了对于大多数 Scala 特性的简单介绍。主要针对 Scala 这门语言的初学者。
