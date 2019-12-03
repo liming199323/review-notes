@@ -6,5 +6,5 @@
     * [Flink 入门进阶](/framework/flink-basis/)
 
 # 2. 在线阅读
-该 docs 使用 [docsify](https://docsify.js.org/) 发布，[在线阅读](https://github.com/liming199323/review-notes/#/)  
+该 docs 使用 [docsify](https://docsify.js.org/) 发布，[在线阅读](https://liming199323.github.io/review-notes/#/)  
   
