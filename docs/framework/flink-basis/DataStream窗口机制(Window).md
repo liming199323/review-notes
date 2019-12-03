@@ -25,7 +25,7 @@ stream
       [.getSideOutput(...)]      <-  可选:DataStream.getSideOutput() 获取侧输出
 ```
 [简单示例代码-KeyedWindowCompleteExample](https://github.com/GourdErwa/flink-advanced/blob/master/src/main/scala/io/gourd/flink/scala/games/streaming/operators/windows/KeyedWindowCompleteExample.scala) ： 
-```java
+```scala
   sEnv.setStreamTimeCharacteristic(TimeCharacteristic.EventTime)
 
   val lateOutputTag = new OutputTag[(String, Int, Double)]("late-data")
@@ -111,14 +111,16 @@ Flink 提供以下类型窗口：
 &emsp;   
 **窗口对齐**：  
 如最后一个示例所示，滚动窗口分配器还采用一个可选 offset 参数，该参数可用于更改窗口的对齐方式。
-    如果没有偏移，则每小时滚动窗口与epoch对齐
-    即您将获得诸如的窗口 1:00:00.000 - 1:59:59.999，2:00:00.000 - 2:59:59.999 ，...依此类推。
-    如果要更改，可以提供一个偏移量 offset = 15 minutes
-    例如，1:15:00.000 - 2:14:59.999，2:15:00.000 - 3:14:59.999 等.
-    一个重要的用例的偏移是窗口调整到比 UTC-0 时区等，例如，在中国，您必须指定的偏移量 Time.hours(-8)
+如果没有偏移，则每小时滚动窗口与epoch对齐
+即您将获得诸如的窗口 `1:00:00.000 - 1:59:59.999，2:00:00.000 - 2:59:59.999 ，...`依此类推。
+如果要更改，可以提供一个偏移量 offset = 15 minutes
+例如，`1:15:00.000 - 2:14:59.999，2:15:00.000 - 3:14:59.999` 等.
+一个重要的用例的偏移是窗口调整到比 UTC-0 时区等，例如，在中国，您必须指定的偏移量 Time.hours(-8)
+
 ![tumbling-windows](https://raw.githubusercontent.com/GourdErwa/review-notes/master/docs/framework/flink-basis/_images/tumbling-windows.png)
+
 [示例代码-TumblingWindow](https://github.com/GourdErwa/flink-advanced/blob/master/src/main/scala/io/gourd/flink/scala/games/streaming/operators/windows/TumblingWindow.scala) ：           
-```java
+```scala
   val rolePayDataStream: DataStream[RolePay] = GameData.DataStream.rolePay(this)
   val keyed = rolePayDataStream.keyBy(_.rid)
 
@@ -150,15 +152,16 @@ Flink 提供以下类型窗口：
 &emsp;   
 **窗口对齐**：  
 如最后一个示例所示，滚动窗口分配器还采用一个可选 offset 参数，该参数可用于更改窗口的对齐方式。
+如果没有偏移，则每小时滚动窗口与epoch对齐
+即您将获得诸如的窗口 `1:00:00.000 - 1:59:59.999，2:00:00.000 - 2:59:59.999 ，...`依此类推。
+如果要更改，可以提供一个偏移量 offset = 15 minutes
+例如，`1:15:00.000 - 2:14:59.999，2:15:00.000 - 3:14:59.999` 等.
+一个重要的用例的偏移是窗口调整到比 UTC-0 时区等，例如，在中国，您必须指定的偏移量 Time.hours(-8)
 
-    如果没有偏移，则每小时滚动窗口与epoch对齐
-    即您将获得诸如的窗口 1:00:00.000 - 1:59:59.999，2:00:00.000 - 2:59:59.999 ，...依此类推。
-    如果要更改，可以提供一个偏移量 offset = 15 minutes
-    例如，1:15:00.000 - 2:14:59.999，2:15:00.000 - 3:14:59.999 等.
-    一个重要的用例的偏移是窗口调整到比 UTC-0 时区等，例如，在中国，您必须指定的偏移量 Time.hours(-8)
 ![sliding-windows](https://raw.githubusercontent.com/GourdErwa/review-notes/master/docs/framework/flink-basis/_images/sliding-windows.png)
+
 [示例代码-SlidingWindow](https://github.com/GourdErwa/flink-advanced/blob/master/src/main/scala/io/gourd/flink/scala/games/streaming/operators/windows/SlidingWindow.scala) ：        
-```java
+```scala
   val rolePayDataStream: DataStream[RolePay] = GameData.DataStream.rolePay(this)
   val keyed = rolePayDataStream.keyBy(_.rid)
 
@@ -197,7 +200,7 @@ Flink 提供以下类型窗口：
     
 ![session-windows](https://raw.githubusercontent.com/GourdErwa/review-notes/master/docs/framework/flink-basis/_images/session-windows.png)
 [示例代码-SessionWindow](https://github.com/GourdErwa/flink-advanced/blob/master/src/main/scala/io/gourd/flink/scala/games/streaming/operators/windows/SessionWindow.scala) ：    
-```java
+```scala
   val rolePayDataStream: DataStream[RolePay] = GameData.DataStream.rolePay(this)
   val keyed = rolePayDataStream.keyBy(_.rid)
 
@@ -222,9 +225,11 @@ Flink 提供以下类型窗口：
 ## 3.4 全局窗口(Global Windows)
 **定义**：全局窗口分配器将所有具有相同key的元素分配到同一个全局窗口中，这个窗口模式仅适用于用户还需自定义触发器的情况。  
 否则，由于全局窗口没有一个自然的结尾，无法执行元素的聚合，将不会有计算被执行。
+
 ![non-windowed](https://raw.githubusercontent.com/GourdErwa/review-notes/master/docs/framework/flink-basis/_images/non-windowed.png)
+
 [示例代码-GlobalWindow](https://github.com/GourdErwa/flink-advanced/blob/master/src/main/scala/io/gourd/flink/scala/games/streaming/operators/windows/GlobalWindow.scala) ：  
-```java
+```scala
   val rolePayDataStream: DataStream[RolePay] = GameData.DataStream.rolePay(this)
   val keyed = rolePayDataStream.keyBy(_.rid)
 

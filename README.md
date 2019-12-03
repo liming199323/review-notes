@@ -1,3 +1,3 @@
 
 # 在线阅读
-该 docs 使用[docsify](https://docsify.js.org/)发布，[在线阅读](https://gourderwa.github.io/review-notes/#/)
+该 docs 使用 [docsify](https://docsify.js.org/) 发布，执行 `docsify serve docs` 本地阅读， [在线阅读地址](https://gourderwa.github.io/review-notes/#/)
