@@ -9,7 +9,7 @@
     * [混入(mini)组合类](/language/scala-lang-tour/混入(mini)组合类.md)
     * [高阶函数](/language/scala-lang-tour/高阶函数.md)
     * [多参数列表(柯里化)](/language/scala-lang-tour/多参数列表(柯里化).md)
-    * [案例类(case classes)](/language/scala-lang-tour/案例类(case classes).md)
+    * [案例类(case classes)](/language/scala-lang-tour/案例类.md)
     * [模式匹配](/language/scala-lang-tour/模式匹配.md)
     * [正则表达式](/language/scala-lang-tour/正则表达式.md)
     * [For 表达式](/language/scala-lang-tour/For表达式.md)
