@@ -6,7 +6,7 @@
     * [类](/language/scala-lang-tour/类.md)
     * [特质(trait)](/language/scala-lang-tour/特质(trait).md)
     * [元组](/language/scala-lang-tour/元组.md)
-    * [混入(mini)组合类](/language/scala-lang-tour/混入(mixin)组合类.md)
+    * [混入(mixin)组合类](/language/scala-lang-tour/混入(mixin)组合类.md)
     * [高阶函数](/language/scala-lang-tour/高阶函数.md)
     * [多参数列表(柯里化)](/language/scala-lang-tour/多参数列表(柯里化).md)
     * [案例类(case classes)](/language/scala-lang-tour/案例类.md)
