@@ -12,8 +12,9 @@ val userBase = List(User("Travis", 28),
   User("Dennis", 23))
 
 // for循环后面使用的yield语句实际上会创建一个List[String]。
-// user <- userBase 是生成器，if (user.age >=20 && user.age < 30) 是过滤器用来过滤掉那些年龄不是20多岁的人。
-val twentySomethings = for (user <- userBase if (user.age >=20 && user.age < 30)) yield user.name
+// user <- userBase 是生成器，if (user.age >=20 && user.age < 30) 是过滤器条件。
+val twentySomethings = for (user <- userBase if (user.age >=20 && user.age < 30))
+  yield user.name
 
 twentySomethings.foreach(name => println(name))  // prints Travis Dennis
 ```
