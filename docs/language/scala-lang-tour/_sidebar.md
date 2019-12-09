@@ -12,6 +12,7 @@
     * [案例类(case classes)](/language/scala-lang-tour/案例类.md)
     * [模式匹配](/language/scala-lang-tour/模式匹配.md)
     * [正则表达式](/language/scala-lang-tour/正则表达式.md)
+    * [提取器对象](/language/scala-lang-tour/提取器对象.md)
     * [For 表达式](/language/scala-lang-tour/For表达式.md)
     * [泛型类&类型上下界&协变/逆变/不变](/language/scala-lang-tour/泛型类.md)
     * [内部类](/language/scala-lang-tour/内部类.md)
