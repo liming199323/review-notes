@@ -26,4 +26,3 @@
     * [注解](/language/scala-lang-tour/注解.md)
     * [包和导入](/language/scala-lang-tour/包和导入.md)
     * [包对象](/language/scala-lang-tour/包对象.md)
-    * [examples(工具类使用示例)](/language/scala-lang-tour/examples(工具类使用示例).md)
