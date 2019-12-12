@@ -22,7 +22,6 @@
     * [自类型](/language/scala-lang-tour/自类型.md)
     * [隐式参数](/language/scala-lang-tour/隐式参数.md)
     * [隐式转换](/language/scala-lang-tour/隐式转换.md)
-    * [隐式标识](/language/scala-lang-tour/隐式标识.md)
     * [多态方法](/language/scala-lang-tour/多态方法.md)
     * [注解](/language/scala-lang-tour/注解.md)
     * [包和导入](/language/scala-lang-tour/包和导入.md)
